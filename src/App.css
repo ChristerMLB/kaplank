@@ -1,0 +1,309 @@
+:root{
+  --myMargin: 1.3em;
+}
+
+@media only screen and (max-width: 600px) {
+  :root{
+    --myMargin: 1em;
+  }
+}
+
+*{
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+#body{
+  background-color: beige;
+  align-items: center;
+  justify-content: center;
+}
+
+#dashboardWrapper{
+  display: flex;
+  gap: var(--myMargin);
+  /* margin: var(--myMargin) auto var(--myMargin) var(--myMargin); */
+  max-width: 900px;
+  min-height: 100vh;
+}
+#plankeOversikt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45ch;
+  min-width: 32ch;
+  background-color: lightgray;
+  padding: 0 var(--myMargin) var(--myMargin) var(--myMargin);
+}
+#controlPanelWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  width: 45ch;
+  min-width: 32ch;
+  background-color: rgb(255, 220, 220);
+  padding: 0 var(--myMargin) var(--myMargin) var(--myMargin);
+}
+.welcomeFlip{
+  position: absolute;
+  max-width: 600px;
+  right: 10vw;
+  top: 30vh;
+}
+.welcomeFlip h2{
+  margin-top: 0;
+}
+#welcomeButtons{
+  display: flex;
+  flex-direction: row;
+  padding-top: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+  #dashboardWrapper{
+    display: block;
+  }
+  #plankeOversikt, #controlPanelWrapper{
+    width: auto;
+    min-height: 100vh;
+  }
+  .welcomeFlip{
+    position: static;
+  }
+}
+
+#addListContainer{
+    z-index: 100;
+    background-image: linear-gradient(lightgrey, transparent, transparent);
+    width: 350px;
+    max-width: 80vw;
+    min-width: 300px;
+    height: 60vh;
+    scroll-snap-align: center;
+    border-radius: 0;
+    display: flex;
+    align-items: flex-start;
+    margin-right: var(--myMargin);
+}
+#addListContainer button{ 
+  margin: var(--myMargin) auto;
+}
+.listHeader{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: #ffffff55;
+  padding: 0 var(--myMargin);
+}
+#planke{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  flex-grow: 1;
+  gap: 1em;
+}
+@media (hover: none) {
+  #planke{
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+}
+.settingsMenuOpen{
+  z-index: 900;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--myMargin);
+  background-color: #88888833;
+  align-items: center;
+  align-content: center;
+}
+.liste, #boardSidebar{
+  background-color: lightgrey;
+  width: 45ch;
+  min-width: 32ch;
+  max-width: 80vw;
+  min-height: 100vh;
+  scroll-snap-align: center;
+}
+#boardSidebar{
+  z-index: 1;
+}
+#boardHistory, #boardNote{
+  margin: var(--myMargin);
+  padding: 0;
+}
+.fargevelgerdings{
+  width: 1.33em;
+  height: 1.33em;
+  margin-top: 0.40em;
+  position: absolute;
+  border: 2px solid #77777788;
+  border-radius: 1em !important;
+  z-index: 999;
+  pointer-events: none;
+}
+.ItemCardWrapper  {
+  margin: 0 auto 1em auto;
+}
+.listHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.flipCard{
+  perspective: 1000px;
+  background-color: transparent;
+  height: 9em;
+  margin: var(--myMargin);
+}
+.flipInner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+.flipCardFront, .flipCardBack{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flipCardBack{
+  transform: rotateY(180deg);
+}
+.flipCard.flipped-enter .flipInner { 
+  animation: flip 400ms ease-in-out forwards;
+}
+.flipCard.flipped-enter-done .flipInner { 
+  transform: rotateY(180deg);
+} 
+.flipCard.flipped-exit .flipInner { 
+  animation: flip 400ms ease-in-out reverse backwards;
+}
+.pause { 
+  animation-play-state: paused !important;
+}
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+.newBoardColor{
+  position: relative;
+  width: 1.7em;
+  height: 1.7em;
+  padding: .3em;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  top: .25em;
+  overflow: hidden;
+  cursor: pointer;
+}
+.newBoardColor:hover{
+  background-color: #00000011;
+  border-radius: 50% !important;
+}
+.bottomTwoButtons{
+  width: 50%;
+}
+#itemCardActions{
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+  /* flex-grow: 1; */
+  padding: 0 .5em 0 1em;
+  right:0px;
+  flex-direction: row-reverse;
+}
+.saveIndicator{
+  position: absolute;
+  padding-left: 1.5em;
+  width: 100%; /* gjemmer board actions for cursoren mens det lagres */
+  z-index: 1000;
+}
+.itemTextField{
+  width: 100%;
+  padding: 2ch;
+  padding-bottom: 2.5ch;
+  border: white;
+  border-radius: 4px;
+  background-color: #ffffffcc;
+  resize: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: medium;
+  overflow: hidden;
+  /* margin: 1em; */
+  margin-top: 0;
+  position: relative;
+  top: 1px;
+}
+.itemTextField:focus{
+  outline: none;
+}
+.myCard{
+  position: relative;
+  /* animation-name: rotateIn; */
+  animation-duration: 200ms;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  /* padding-top: 2em; */
+  margin: var(--myMargin);
+  max-width: 400px;
+}
+.itemCard{
+  flex-direction: column;
+}
+.boardButtons{
+  height: 7em;
+  padding: 1em;
+  flex-grow: 1;
+  font-size: large !important;
+}
+.boardCardActions{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.boardCard{
+  padding: 0;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.boardFlip{
+  width: 100%;
+  max-width: 360px;
+  padding: var(--myMargin) 0;
+  margin: 0;
+}
+.addItemCard, .addBoardCard{
+  min-height: 9.5em;
+  flex-direction: column;
+  margin: 0;
+}
+.addItemTextField{
+  width:auto;
+  overflow: visible;
+}
+.plusCard{
+  margin: 0px;
+  padding:0px;
+  min-height: 9em;
+}
+@keyframes rotateIn{
+  from {transform:rotateY(90deg);}
+  to {transform:rotateY(0deg);} 
+}
